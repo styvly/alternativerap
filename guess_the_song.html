@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Song!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #songTitle {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        iframe {
+            margin-top: 15px;
+            border-radius: 10px;
+            width: 300px;
+            height: 380px;
+            display: none;
+        }
+    </style>
+    <script>
+        function getRandomSong() {
+            const songs = [
+                { title: "EARFQUAKE", link: "https://open.spotify.com/track/2Rxv2TvvKjQ5WvZ7N1OCnW", embed: "https://open.spotify.com/embed/track/2Rxv2TvvKjQ5WvZ7N1OCnW" },
+                { title: "See You Again", link: "https://open.spotify.com/track/5VviM34D6rN8c0S7CReUvh", embed: "https://open.spotify.com/embed/track/5VviM34D6rN8c0S7CReUvh" },
+                { title: "Yonkers", link: "https://open.spotify.com/track/2p6FQOrpIhAO6jj4EbD3Fh", embed: "https://open.spotify.com/embed/track/2p6FQOrpIhAO6jj4EbD3Fh" }
+            ];
+
+            const randomIndex = Math.floor(Math.random() * songs.length);
+            const randomSong = songs[randomIndex];
+
+            document.getElementById("songTitle").innerHTML = 
+                `<a href="${randomSong.link}" target="_blank">${randomSong.title}</a>`;
+            
+            const coverEmbed = document.getElementById("coverEmbed");
+            coverEmbed.src = randomSong.embed;
+            coverEmbed.style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <h1>Guess the Song!</h1>
+    <button onclick="getRandomSong()">Generate Song</button>
+    <p id="songTitle"></p>
+    <iframe id="coverEmbed" allow="encrypted-media" frameborder="0" allowtransparency="true"></iframe>
+</body>
+</html>
